@@ -23,7 +23,7 @@ scene.add(road);
 // Araba yükleyici
 let car;
 const loader = new THREE.GLTFLoader();
-loader.load('.bugatti_chiron(1).glb', (gltf) => {
+loader.load('.bugatti_chiron.glb', (gltf) => {
   car = gltf.scene;
   car.scale.set(0.5, 0.5, 0.5); // Araba boyutunu ayarlıyoruz
   scene.add(car);
