@@ -25,9 +25,9 @@ let car;
 const loader = new THREE.GLTFLoader();
 loader.load('.bugatti_chiron.glb', (gltf) => {
   car = gltf.scene;
-  car.scale.set(0.5, 0.5, 0.5); // Araba boyutunu ayarlıyoruz
+  car.scale.set(0.5, 0.5, 0.5);
   scene.add(car);
-  car.position.set(0, 1, 0); // Arabanın başlangıç konumunu ayarlıyoruz
+  car.position.set(0, 1, 0);
 });
 
 // Kamera ve hız ayarları
