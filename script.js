@@ -23,12 +23,13 @@ scene.add(road);
 // Araba yükleyici
 let car;
 const loader = new THREE.GLTFLoader();
-loader.load('.bugatti_chiron.glb', (gltf) => {
+loader.load('./bugatti_chiron.glb', (gltf) => {
   car = gltf.scene;
   car.scale.set(0.5, 0.5, 0.5);
   scene.add(car);
   car.position.set(0, 1, 0);
 });
+
 
 // Kamera ve hız ayarları
 let speed = 0;
