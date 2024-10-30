@@ -37,5 +37,37 @@ camera.position.z = 5;
 
 // Gece/gündüz geçiş fonksiyonu
 let isDay = true;
-document
+document.getElementById("dayNightToggle").addEventListener("click", () => {
+  isDay = !isDay;
+  ambientLight.intensity = isDay ? 0.5 : 0.1;
+  directionalLight.intensity = isDay ? 0.5 : 0.1;
+  renderer.setClearColor(isDay ? 0x87CEEB : 0x0a0a0a); // Gündüz açık mavi, gece siyah
+});
 
+// Klavye kontrolleri
+const keys = { w: false, a: false, s: false, d: false, space: false };
+
+window.addEventListener("keydown", (event) => keys[event.key.toLowerCase()] = true);
+window.addEventListener("keyup", (event) => keys[event.key.toLowerCase()] = false);
+
+// Oyun döngüsü
+function animate() {
+  requestAnimationFrame(animate);
+
+  // Araba hareket kontrolleri
+  if (keys.w) speed = Math.min(maxSpeed, speed + 1);
+  if (keys.s) speed = Math.max(0, speed - 1);
+  if (keys.space) speed = Math.max(0, speed - 3); // El freni
+  if (keys.a) car.rotation.y += 0.03;
+  if (keys.d) car.rotation.y -= 0.03;
+
+  // Araba konumu
+  if (car) {
+    car.translateZ(speed / 100);
+    document.getElementById("speedometer").textContent = `Hız: ${Math.floor(speed)} km/h`;
+  }
+
+  renderer.render(scene, camera);
+}
+
+animate();
