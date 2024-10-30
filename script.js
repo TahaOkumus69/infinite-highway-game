@@ -23,14 +23,14 @@ scene.add(road);
 // Araba yükleyici
 let car;
 const loader = new THREE.GLTFLoader();
-loader.load('https://model-url.com/bugatti_chiron_model.gltf', (gltf) => {
+loader.load('.bugatti_chiron(1).glb', (gltf) => {
   car = gltf.scene;
-  car.scale.set(0.5, 0.5, 0.5);
+  car.scale.set(0.5, 0.5, 0.5); // Araba boyutunu ayarlıyoruz
   scene.add(car);
-  car.position.set(0, 1, 0);
+  car.position.set(0, 1, 0); // Arabanın başlangıç konumunu ayarlıyoruz
 });
 
-// Kamera ve hız
+// Kamera ve hız ayarları
 let speed = 0;
 let maxSpeed = 300;
 camera.position.z = 5;
@@ -41,7 +41,7 @@ document.getElementById("dayNightToggle").addEventListener("click", () => {
   isDay = !isDay;
   ambientLight.intensity = isDay ? 0.5 : 0.1;
   directionalLight.intensity = isDay ? 0.5 : 0.1;
-  renderer.setClearColor(isDay ? 0x87CEEB : 0x0a0a0a); // Gündüz açık mavi, gece siyah
+  renderer.setClearColor(isDay ? 0x87CEEB : 0x0a0a0a); // Gündüz mavi, gece siyah arkaplan
 });
 
 // Klavye kontrolleri
@@ -63,7 +63,7 @@ function animate() {
 
   // Araba konumu
   if (car) {
-    car.translateZ(speed / 100);
+    car.translateZ(speed / 100); // İleri hareket sağlıyoruz
     document.getElementById("speedometer").textContent = `Hız: ${Math.floor(speed)} km/h`;
   }
 
